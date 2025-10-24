@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { BASE_URL } from "../../data/baseUrl";
 import { useAppContext } from "../../context/AppContext";
+import { enqueueSnackbar } from "notistack";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -55,8 +56,15 @@ const LoginForm = () => {
           navigate("/users");
         }
       } catch (error) {
-        console.error("login error:", error?.response);
-        alert(error?.response?.data?.message || error?.message);
+        // console.error("login error:", error?.response);
+        enqueueSnackbar(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong!",
+          {
+            variant: "error",
+          }
+        );
       } finally {
         setLoading(false);
       }
