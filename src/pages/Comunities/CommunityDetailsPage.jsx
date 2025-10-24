@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PageTitle from "../../components/Common/PageTitle";
-import CommunityProductList from "./CommunityPRoductList";
+import CommunityProductList from "./CommunityProductList";
 import CommunityInfo from "./CommunityInfo";
 import Tabs from "./Tabs";
 
