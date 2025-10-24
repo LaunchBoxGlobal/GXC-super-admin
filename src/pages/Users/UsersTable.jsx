@@ -71,7 +71,7 @@ const UsersTable = ({ users, fetchUsers }) => {
             </tr>
           </thead>
           <tbody>
-            {users &&
+            {users && users?.length > 0 ? (
               users?.map((user, i) => (
                 <tr key={i} className="bg-white border-b border-gray-400">
                   <td className="px-6 py-4 border-b text-sm">{user?.id}</td>
@@ -143,9 +143,20 @@ const UsersTable = ({ users, fetchUsers }) => {
                     </Link>
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
+
+        {users && users?.length <= 0 && (
+          <div className="w-full min-h-[80vh] flex items-center text-center justify-center">
+            <p className="text-gray-600 font-normal text-center mx-auto">
+              No users found!
+            </p>
+          </div>
+        )}
       </div>
 
       {loading && (

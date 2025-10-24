@@ -146,6 +146,14 @@ const OwnerCommunityList = ({ users, fetchUsers }) => {
               ))}
           </tbody>
         </table>
+
+        {users && users?.length <= 0 && (
+          <div className="w-full min-h-[80vh] flex items-center text-center justify-center">
+            <p className="text-gray-600 font-normal text-center mx-auto">
+              No users found!
+            </p>
+          </div>
+        )}
       </div>
 
       {loading && (
