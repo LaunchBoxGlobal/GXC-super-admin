@@ -46,7 +46,11 @@ const Sidebar = () => {
   return (
     <div className="w-full h-full rounded-[10px] py-6 px-2 lg:px-5 flex flex-col items-start gap-y-6 bg-[#fff] custom-shadow">
       <div>
-        <h1 className="text-[35px] font-semibold tracking-tight">Logo</h1>
+        <img
+          src="/logo.svg"
+          alt="logo"
+          className="max-w-[144px] object-contain"
+        />
       </div>
       <ul className="w-full flex flex-col gap-y-2">
         {PAGE_LINKS?.map((link, index) => {
@@ -55,7 +59,7 @@ const Sidebar = () => {
             <li className={`w-full text-black h-[49px]`} key={index}>
               <Link
                 to={link?.page}
-                // onClick={() => navigateToLink(link?.page, link?.title)}
+                onClick={() => navigateToLink(link?.page, link?.title)}
                 className={`text-sm flex items-center gap-x-2.5 font-medium w-full h-[49px] px-4 rounded-[12px] outline-none ${
                   location?.pathname === link?.page ||
                   location?.pathname.startsWith(link?.page + "/")
