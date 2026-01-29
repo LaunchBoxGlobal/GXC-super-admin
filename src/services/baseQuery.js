@@ -15,10 +15,15 @@ export const baseQuery = async (args, api, extraOptions) => {
   });
 
   const result = await rawBaseQuery(args, api, extraOptions);
-
   if (result?.error) {
     const status = result.error?.status;
-
+    if (result?.error?.status === "FETCH_ERROR") {
+      enqueueSnackbar("Unable to connect to server. Please try again later.", {
+        variant: "error",
+      });
+      console.error("Network error:", result.error.error);
+      return result;
+    }
     switch (status) {
       case 401:
         enqueueSnackbar("Session expired. Please log in again.", {
@@ -38,7 +43,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong.",
           {
             variant: "error",
-          }
+          },
         );
         console.warn("fwefew");
         break;
@@ -50,7 +55,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "You do not have permission.",
           {
             variant: "error",
-          }
+          },
         );
         handleLogout();
         console.warn("Forbidden: You do not have permission.");
@@ -63,7 +68,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Oops! Resource not found!",
           {
             variant: "error",
-          }
+          },
         );
         console.warn("Resource not found.");
         break;
@@ -75,7 +80,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong!",
           {
             variant: "error",
-          }
+          },
         );
         console.error("Server error occurred.");
         break;
@@ -88,7 +93,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong!",
           {
             variant: "error",
-          }
+          },
         );
         console.error("Unhandled API error:", result.error);
         break;
