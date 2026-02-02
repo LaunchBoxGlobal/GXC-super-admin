@@ -30,7 +30,7 @@ const Header = ({ user, refetch }) => {
         `User ${
           newStatus === "active" ? "unblocked" : "suspended"
         } successfully`,
-        { variant: "success" }
+        { variant: "success" },
       );
       refetch();
     } catch (error) {
@@ -47,7 +47,7 @@ const Header = ({ user, refetch }) => {
               : "/profile-icon.png"
           }
           alt="user profile picture"
-          className="max-w-[116px] min-w-[55px] h-[55px] lg:h-[116px] rounded-full object-cover"
+          className="lg:min-w-[116px] max-w-[116px] min-w-[55px] h-[55px] lg:h-[116px] rounded-full object-cover"
         />
         <div>
           <h2 className="font-semibold text-[20px] lg:text-[32px] leading-none tracking-tight">
