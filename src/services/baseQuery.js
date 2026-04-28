@@ -10,6 +10,7 @@ export const baseQuery = async (args, api, extraOptions) => {
     prepareHeaders: (headers) => {
       const token = Cookies.get("adminToken");
       if (token) headers.set("Authorization", `Bearer ${token}`);
+      headers.set("Accept-Language", "en");
       return headers;
     },
   });
